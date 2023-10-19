@@ -61,6 +61,11 @@ public class User {
 		this.name= user.name;
 		this.email=user.email;
 	}
+
+	public static User status() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }

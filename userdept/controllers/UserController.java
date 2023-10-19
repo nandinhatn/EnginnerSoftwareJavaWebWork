@@ -1,8 +1,11 @@
 package com.devsuperior.userdept.controllers;
 
+import java.time.Instant;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.devsuperior.userdept.entities.User;
 import com.devsuperior.userdept.repositories.UserRepository;
 import com.devsuperior.userdept.services.UserService;
+import com.devsuperior.userdept.services.execeptions.EntityNotFoundException;
+import com.devsuperior.userdept.services.execeptions.StandardError;
 
 @RestController
 @RequestMapping(value="/users")
@@ -37,28 +42,36 @@ public class UserController {
 	}
 	//get user com select
 	@GetMapping(value="/{id}")
-	public User findById( @PathVariable Long id){
+	public ResponseEntity<User> findById( @PathVariable Long id){
+		
 	
-		User result = userService.findById(id);
-		return result;
+			User result = userService.findById(id);
+			return ResponseEntity.ok().body(result);
+		
+		
+	
+		
 		
 	}
 	//delelte user
 	@DeleteMapping(value="/{id}")
-	public User delete( @PathVariable Long id){
+	public ResponseEntity<User> delete( @PathVariable("id") Long id){
 	
-		User result = repository.findById(id).get();
-		return result;
+		User result = userService.findById(id);
+		repository.deleteById(id);
+	
+		return ResponseEntity.ok().body(result);
 		
 	}
 	
 	//update user
 	@PutMapping(value="/{id}")
-	public User update( @PathVariable Long id, @RequestBody User user){
+	public ResponseEntity<User> update( @PathVariable Long id, @RequestBody User user){
 	
-		User entity = repository.getReferenceById(id);
+		User entity = userService.findById(id);
 		entity.update(user);
-		return repository.save(entity);
+		repository.save(entity);
+		return ResponseEntity.ok().body(entity);
 		
 	}
 	
