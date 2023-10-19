@@ -14,10 +14,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.devsuperior.userdept.entities.User;
 import com.devsuperior.userdept.repositories.UserRepository;
+import com.devsuperior.userdept.services.UserService;
 
 @RestController
 @RequestMapping(value="/users")
 public class UserController {
+	
+	@Autowired
+	private UserService userService;
 	//criando endPoints
 	
 	@Autowired
@@ -35,7 +39,7 @@ public class UserController {
 	@GetMapping(value="/{id}")
 	public User findById( @PathVariable Long id){
 	
-		User result = repository.findById(id).get();
+		User result = userService.findById(id);
 		return result;
 		
 	}
