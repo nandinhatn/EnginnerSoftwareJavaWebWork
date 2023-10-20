@@ -3,9 +3,9 @@ PortfolioWork JavaWeb for ProgramaçãoWeb ' class
 <p>Spring boot project with CRUD operations, using an h2 database</p>
 
 
-### 🛠 Tecnologias
+### 🛠 Technologies
 
-As seguintes ferramentas foram usadas na construção do projeto:
+The following tools were used to build the project:
 
 - [Java](https://www.java.com/pt-BR/)
 - [SpringBoot](https:/spring.io)
