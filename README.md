@@ -7,7 +7,7 @@ PortfolioWork JavaWeb for ProgramaçãoWeb ' class
 
 As seguintes ferramentas foram usadas na construção do projeto:
 
-- [Java]((https://www.java.com/pt-BR/)
+- [Java](https://www.java.com/pt-BR/)
 - [SpringBoot]([https:/spring.io)
 - [Postman](https://www.postman.com))
 
